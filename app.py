@@ -47,19 +47,5 @@ def sign_up():
         do_sign_up(new_user, new_pass)
         return render_template("my.html", error = error)
 
-def init():
-    print("Intru")
-    with open("state.txt", 'r+') as file:
-        for line in file:
-            i = 1
-            for word in line.split():
-                if i == 1:
-                    print(word)
-                    username.append(word)
-                else:
-                    print(word)
-                    passwords.append(word)
-                i = i + 1
-
 if __name__ == '__main__':
     app.run();
