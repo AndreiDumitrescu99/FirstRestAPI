@@ -1,6 +1,6 @@
 <html>
 	<title> This is our First Server </title>
-	<link rel = "stylesheet" href = "style.css">
+	<link rel = "stylesheet" href = "{{ url_for('static', filename='style.css', v=0.01) }}">
 	<body>
 		<div id="container">
 			<div id="leftForm">
