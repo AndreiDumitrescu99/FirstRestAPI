@@ -11,7 +11,8 @@ def do_sign_up():
 @app.route('/', methods=['POST'])
 def sign_up():
     if request.method == 'POST':
-        return do_sign_up()
+        do_sign_up()
+        return render_template("my.html")
 
 
 if __name__ == '__main__':
