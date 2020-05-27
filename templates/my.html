@@ -1,10 +1,32 @@
 <html>
-    <h2> Hello! I'm Dumi! </h2>
-    <form action="/" method="post">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username"><br>
-        <label for="password">Password:</label><br>
-        <input type="text" id="password" name="password"><br>
-        <input type="submit" name="sign_up" value="Sign_up">
-    </form>
+	<title> This is our First Server </title>
+	<link rel = "stylesheet" href = "{{ url_for('static', filename='style.css', v=0.01) }}">
+	<body>
+		<div id="container">
+			<div id="leftForm">
+				<form action="/" method="post">
+			        <label for="username"> Enter your first name: </label><br>
+			        <input type="text" id="firstname" name="firstname"><br>
+			        <label for="username"> Enter your last name: </label><br>
+			        <input type="text" id="lastname" name="lastname"><br>
+			        <label for="username"> Create an username: </label><br>
+			        <input type="text" id="username" name="username"><br>
+			        <label for="password"> Create your password: </label><br>
+			        <input type="text" id="password" name="password"><br>
+			        <input type="submit" name="sign_up" value="Sign up">
+			    </form>
+			</div>
+
+		    <div id="rightForm">
+			    <form action="/" method="post">
+			        <label for="username"> Enter your username: </label><br>
+			        <input type="text" id="username" name="username"><br>
+			        <label for="password"> Enter your password: </label><br>
+			        <input type="text" id="password" name="password"><br>
+			        <input type="submit" name="sign_in" value="Sign in">
+			    </form>
+			</div>
+		</div>
+	</body>
 </html>
+
