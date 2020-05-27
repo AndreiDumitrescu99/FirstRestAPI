@@ -1,0 +1,12 @@
+#container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+#leftForm {
+  width: 50%;
+}
+#rightForm {
+  width: 50%;
+}
