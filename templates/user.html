@@ -1,13 +1,13 @@
 <html>
 	<head>
-		<title> User page </title>
+		<title> {{ value }}'s page </title>
 		<h3>Hello, I am: {{ value }}</h3>
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	    <script type="text/javascript">
 	    	function rename_user() {
 			    $.ajax({
-				    url: 'http://localhost:5000/user/' + {{ value }},
-				    method: 'PUT',
+				    url: "http://localhost:5000/user/" + {{ value }},
+				    method: "PUT",
 				    success: function(result) {
 				        console.log(result);
 					   	location.reload();
@@ -20,8 +20,8 @@
 
 	    	function delete_user() {
 			    $.ajax({
-				    url: 'http://localhost:5000/user/' + {{ value }},
-				    method: 'DELETE',
+				    url: "http://localhost:5000/user/delete/",
+				    method: "DELETE",
 				    success: function(result) {
 				        console.log(result);
 					   	location.reload();
