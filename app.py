@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request, redirect
 app = Flask(__name__)
 
 username = []
@@ -13,13 +13,29 @@ for line in myfile:
             username.append(word)
         else:
             passwords.append(word)
-            i = i + 1
+        i = i + 1
 myfile.seek(0, os.SEEK_END)
 
+def check_for_user(user, passd):
+    for i in range(len(username)):
+        if username[i] == user:
+            if passwords[i] == passd:
+                return 1
+            else:
+                return 0
+    return 0
 
 @app.route('/')
 def home():
-    return render_template("my.html")
+    opt_param = request.args.get("username")
+    if opt_param is None:
+        return render_template("my.html")
+    new_user = request.args.get('username')
+    password = request.args.get('password')
+    if check_for_user(new_user, password) == 1:
+        string = '/user/' + new_user
+        return redirect(string)
+    return redirect('/error')
 
 def do_sign_up(new_user, new_pass):
     semafor = 1
@@ -38,7 +54,7 @@ def do_sign_up(new_user, new_pass):
         print("Utilizator creat cu succes")
 
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=["POST"])
 def sign_up():
     if request.method == 'POST':
         error = None
@@ -46,6 +62,15 @@ def sign_up():
         new_pass = request.form['password']
         do_sign_up(new_user, new_pass)
         return render_template("my.html", error = error)
+
+@app.route('/user/<username>')
+def profile(username):
+    return render_template("user.html", value=username)
+
+@app.route('/error')
+def error():
+    return ('Wrong username or password')
+
 
 if __name__ == '__main__':
     app.run();
