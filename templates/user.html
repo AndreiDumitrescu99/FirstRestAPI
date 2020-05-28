@@ -6,10 +6,10 @@
 	    <script type="text/javascript">
 	    	function rename_user() {
 			    $.ajax({
-				    url: "http://localhost:5000/user/" + {{ value }},
+				    url: "../../user/" + {{ value }},
 				    method: "PUT",
 				    success: function(result) {
-				        console.log(result);
+				        console.log("aici");
 					   	location.reload();
 				    },
 				    error: function(err) {
@@ -20,7 +20,7 @@
 
 	    	function delete_user() {
 			    $.ajax({
-				    url: "http://localhost:5000/user/delete/",
+				    url: "../../user/Andrei",
 				    method: "DELETE",
 				    success: function(result) {
 				        console.log(result);

@@ -63,11 +63,14 @@ def sign_up():
         do_sign_up(new_user, new_pass)
         return render_template("my.html", error = error)
 
-@app.route('/user/<username>')
+@app.route('/user/<username>', methods=['GET', 'DELETE'])
 def profile(username):
-    return render_template("user.html", value=username)
+    if request.method == 'GET':
+        return render_template("user.html", value=username)
+    elif request.method == 'DELETE':
+        return redirect('/')
 
-@app.route('/user/delete')
+@app.route('/user/delete', methods=['GET'])
 def onsuccesfuldelete():
     return "User deleted"
 
