@@ -98,7 +98,5 @@ def onsuccesfuldelete():
     delete_user(user)
     return("I tried")
 
-
-
 if __name__ == '__main__':
     app.run();
