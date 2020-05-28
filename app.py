@@ -6,6 +6,8 @@ usernames = []
 passwords = []
 error = None
 myfile = open("state.txt", 'r+')
+global_sem = 0
+
 for line in myfile:
     i = 1
     for word in line.split():
@@ -63,14 +65,17 @@ def sign_up():
         do_sign_up(new_user, new_pass)
         return render_template("my.html", error = error)
 
-@app.route('/user/<username>', methods=["GET", "DELETE"])
+@app.route('/user/<username>', methods=["GET", "DELETE", "PUT"])
 def profile(username):
-    print("Buna BAU BAU")
+    global global_sem
     if request.method == 'GET':
         if username not in usernames:
             return redirect('/')
     if request.method == 'DELETE':
         return redirect('/user/delete')
+    if global_sem == 1:
+        global_sem = 0
+        return redirect('/error')
     return render_template("user.html", value=username)
 
 @app.route('/error')
@@ -84,7 +89,8 @@ def delete_user(user):
             passd = passwords[i]
     usernames.remove(user)
     passwords.remove(passd)
-    myfile = open("state.txt", 'w+')
+    myfile.truncate(0)
+    myfile.seek(0, os.SEEK_SET)
     for i in range(len(usernames)):
         myfile.write(usernames[i])
         myfile.write(" ")
@@ -93,11 +99,34 @@ def delete_user(user):
 
 @app.route('/user/delete/', methods=["DELETE"])
 def onsuccesfuldelete():
-    print("Buna")
     user = request.form['username']
     delete_user(user)
     return("I tried")
 
+@app.route('/user/newusername', methods=["PUT"])
+def onsuccesfulput():
+    global global_sem
+    semafor = 1
+    old_user = request.form['old_username']
+    new_user = request.form['new_username']
+    for i in range(len(usernames)):
+        if usernames[i] == new_user:
+            semafor = 0
+    if semafor == 1:
+        for i in range(len(usernames)):
+            if usernames[i] == old_user:
+                usernames[i] = new_user
+        myfile.truncate(0)
+        myfile.seek(0, os.SEEK_SET)
+        for i in range(len(usernames)):
+            myfile.write(usernames[i])
+            myfile.write(" ")
+            myfile.write(passwords[i])
+            myfile.write("\n")
+        return "put_succesful"
+    else:
+        global_sem = 1
+        return "put_unsuccesful"
 
 
 if __name__ == '__main__':
