@@ -67,6 +67,10 @@ def sign_up():
 def profile(username):
     return render_template("user.html", value=username)
 
+@app.route('/user/delete')
+def onsuccesfuldelete():
+    return "User deleted"
+
 @app.route('/error')
 def error():
     return ('Wrong username or password')
