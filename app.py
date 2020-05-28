@@ -128,6 +128,5 @@ def onsuccesfulput():
         global_sem = 1
         return "put_unsuccesful"
 
-
 if __name__ == '__main__':
     app.run();
