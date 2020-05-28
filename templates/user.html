@@ -1,3 +1,40 @@
 <html>
-    <h3>Hello, I am: {{ value }}</h3>
+	<head>
+		<title> User page </title>
+		<h3>Hello, I am: {{ value }}</h3>
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	    <script type="text/javascript">
+	    	function rename_user() {
+			    $.ajax({
+				    url: 'http://localhost:5000/user/' + {{ value }},
+				    method: 'PUT',
+				    success: function(result) {
+				        console.log(result);
+					   	location.reload();
+				    },
+				    error: function(err) {
+					   	console.log(err);
+					}
+				});
+			}
+
+	    	function delete_user() {
+			    $.ajax({
+				    url: 'http://localhost:5000/user/' + {{ value }},
+				    method: 'DELETE',
+				    success: function(result) {
+				        console.log(result);
+					   	location.reload();
+				    },
+				    error: function(err) {
+					   	console.log(err);
+					}
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<button onclick="rename_user()"> Rename user </button>	    
+		<button onclick="delete_user()"> Delete user </button>
+	</body>
 </html>
