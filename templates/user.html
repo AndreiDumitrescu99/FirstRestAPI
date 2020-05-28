@@ -6,8 +6,12 @@
         <script type="text/javascript">
             function rename_user() {
                 $.ajax({
-                    url: "http://localhost:5000/user/" + {{ value }},
-                    method: "PUT",
+                    url: "../../user/newusername" ,
+                    type: "PUT",
+                    data: {
+                        "old_username": "{{value}}",
+                        "new_username": document.getElementById("changename").value
+                    },
                     success: function(result) {
                         console.log(result);
                            location.reload();
@@ -38,4 +42,7 @@
     </head>
     <button onclick="rename_user()"> Rename user </button>
     <button onclick="delete_user()"> Delete user </button>
+    <form>
+        <input type="text" id="changename">
+    </form>
 </html>
