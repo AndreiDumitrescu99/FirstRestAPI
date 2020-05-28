@@ -1,5 +1,6 @@
 <html>
 	<title> This is our First Server </title>
+    <h2> Hello! We are Adriana and Andrei! :) </h2>
 	<link rel = "stylesheet" href = "{{ url_for('static', filename='style.css', v=0.01) }}">
 	<body>
 		<div id="container">
@@ -12,21 +13,20 @@
 			        <label for="username"> Create an username: </label><br>
 			        <input type="text" id="username" name="username"><br>
 			        <label for="password"> Create your password: </label><br>
-			        <input type="text" id="password" name="password"><br>
+			        <input type="password" id="password" name="password"><br>
 			        <input type="submit" name="sign_up" value="Sign up">
 			    </form>
 			</div>
 
 		    <div id="rightForm">
-			    <form action="/" method="post">
+			    <form action="/" method="get">
 			        <label for="username"> Enter your username: </label><br>
 			        <input type="text" id="username" name="username"><br>
 			        <label for="password"> Enter your password: </label><br>
-			        <input type="text" id="password" name="password"><br>
+			        <input type="password" id="password" name="password"><br>
 			        <input type="submit" name="sign_in" value="Sign in">
 			    </form>
 			</div>
 		</div>
 	</body>
 </html>
-
