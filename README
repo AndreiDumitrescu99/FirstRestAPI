@@ -1,0 +1,26 @@
+FirstAPI REST
+
+Andrei Dumitrescu si Adriana Tudor
+
+Backend: python-flask
+Frontend: HTML/CSS
+
+	Descriere generala:
+
+	Aplicatia noastra simuleaza un server web de logare. Pentru a evidentia
+cele patru tipuri de request-uri, am folosit urmatoarele operatii:
+
+	* POST: folosind butonul de Sign up ne cream un cont nou, identificat unic
+	dupa username.
+	* GET: folosind butonul de Sign in nobtinem pagina utilizatorului sau
+	pagina de eroare daca nu exista.
+	* DELETE: folosind butonul de Delete user din pagina utilizatorului
+	il stergem.
+	* POST: folosind butonul de Rename user si campul de introducere text din
+	pagina acestuia, ii modificam username-ul.
+
+	Observatii suplimentare:
+
+	Pentru a simula o baza de date, folosim fisierul state.txt de care este
+nevoie pentru a rula server-ul. Va rugam sa nu folositi aceeasi parola pentru
+utilizatori diferiti.
